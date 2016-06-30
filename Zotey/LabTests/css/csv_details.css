@@ -1,0 +1,77 @@
+.csv_details:nth-child(2n) 
+{
+    background: rgba(236,246,248,0.99) !important;
+}
+ #tst_profile_loader
+{
+ 	margin-left: 38%;
+ 	width: 11%;
+ 	margin-top: 6%;
+}
+
+table 
+{
+	 border-collapse: collapse;
+
+}
+body
+{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: "1.42857143";
+}
+.font-size{
+	font-size: 13px;
+	text-align: center;
+}
+td
+{
+	margin-top:3px;
+  padding:5px;
+}
+a{
+	text-decoration: none;
+}
+
+a:link, a:visited ,a:active
+{
+   text-decoration: none;
+}
+a:hover{
+    background:rgb(234, 73, 79);
+    color: white !important; 
+    text-decoration: none;
+}
+.test_profile_name
+{
+	text-decoration: none;
+}
+.test_profile_name:hover
+{
+    background:rgb(234, 73, 79);
+    color: white !important; 
+    text-decoration: none;
+}
+.test_profile_name:visited
+{
+    text-decoration: none;
+}
+.test_profile_name:link
+{
+	text-decoration: none;
+}
+.test_profile_name:active
+{
+  text-decoration: none;
+}
+#view_message_id :hover
+{
+  text-decoration: none;
+}
+.modal {
+   background: #eee;
+    width: 600px;
+    margin: 20px auto;
+    /* margin-left: 341px; */
+    border: 3px solid #666;
+    padding: 20px;-150px;
+}
