@@ -757,6 +757,7 @@ function update_row(test_id,csv_file_id,test_name,mark_test_as,master_test_name,
   var content = '';
 
 $('table tr:nth-child('+serial_num+')').empty();
+$('table tr:nth-child('+serial_num+')').css('background-color','yellow');
 
       var table_data_test_id=document.createElement('td');
         $(table_data_test_id).html(test_id); 
