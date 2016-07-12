@@ -12,13 +12,75 @@ function table_module()
    data:{csv_file_id:27},
    success:function(data)
    {
+     console.log(data);
       var container = document.getElementById('data');
       var row_top=document.createElement('div');
       $(row_top).addClass('row');
 
       var tst_profile_loading = document.getElementById("tst_profile_loader");
       $(tst_profile_loading).css('display','none');
-    
+
+      var top_row_for_mapping_buttons=document.createElement('div');
+      $(top_row_for_mapping_buttons).addClass('row'); 
+      $(top_row_for_mapping_buttons).css('margin-bottom','2%'); 
+      
+      var total_col_div=document.createElement('div');
+      $(total_col_div).addClass('col-md-12 col-sm-12 col-lg-12');
+
+      var top_row_for_mapping_buttons_left_col=document.createElement('div');
+      $(top_row_for_mapping_buttons_left_col).addClass('col-md-5 col-sm-5 col-lg-5');
+
+      var top_row_for_mapping_buttons_center_col=document.createElement('div');
+      $(top_row_for_mapping_buttons_center_col).addClass('col-md-4 col-sm-4 col-lg-4');
+
+      var top_row_for_mapping_buttons_right_col=document.createElement('div');
+      $(top_row_for_mapping_buttons_right_col).addClass('col-md-3 col-sm-3 col-lg-3');
+      
+      if(data.mapped_already=='yes')
+      {
+            var button_for_mapping_table=document.createElement('div');
+           // $(button_for_mapping_table).addClass('btn btn-block btn-default active');
+           // $(button_for_mapping_table).attr('disabled','true');
+            $(button_for_mapping_table).html('Already Mapped');
+            $(button_for_mapping_table).css('fontWeight','bold');
+            $(button_for_mapping_table).css('textAlign','center');
+            $(button_for_mapping_table).css('border-radius','5px');
+            $(button_for_mapping_table).css('padding','5px');
+            $(button_for_mapping_table).css('border','2px solid #ddd');
+            $(button_for_mapping_table).attr('data-csv-file-id',data.csv_file_id);
+            
+            $(top_row_for_mapping_buttons_right_col).append(button_for_mapping_table);
+      }
+      else if(data.mapped_already=='no')
+      {
+            var button_for_mapping_table=document.createElement('button');
+          
+            $(button_for_mapping_table).addClass('btn btn-block btn-info active');
+            $(button_for_mapping_table).html('Map It');
+            $(button_for_mapping_table).css('fontWeight','bold');
+            $(button_for_mapping_table).attr('data-csv-file-id',data.csv_file_id);
+          
+            $(button_for_mapping_table).click(function()
+            {
+              var csv_file_id=$(this).data('csv-file-id'); 
+              loading_image();  
+              for_table_mapping(csv_file_id);  
+            });
+
+           $(top_row_for_mapping_buttons_right_col).append(button_for_mapping_table);      
+
+      }
+      else
+      {
+
+      }
+      
+      
+      $(total_col_div).append(top_row_for_mapping_buttons_left_col);
+      $(total_col_div).append(top_row_for_mapping_buttons_center_col);
+      $(total_col_div).append(top_row_for_mapping_buttons_right_col);
+      $(top_row_for_mapping_buttons).append(total_col_div);
+   
       var total_records_div=document.createElement('div');
       $(total_records_div).addClass('col-md-12 col-sm-12 col-lg-12');
     
@@ -450,6 +512,8 @@ function table_module()
       $(csv_values).append(table);
       $(total_records_div).append(csv_values);
       $(row_top).append(total_records_div);
+
+      $(container).append(top_row_for_mapping_buttons);
       $(container).append(row_top);   
     }
 });
@@ -464,7 +528,7 @@ function view_message()
     $(add_more_page).attr('id','modal');
     $(add_more_page).css('backgroundColor','#fff');
     $(add_more_page).css('position','relative');
-    $(add_more_page).css('paddingRight','0px');
+
     var add_more_close_element = document.createElement('a');
     $(add_more_close_element).addClass("close");
     $(add_more_close_element).attr('href','#');
@@ -509,7 +573,7 @@ function edit_master_test_name()
     $(add_more_page).attr('id','modal');
     $(add_more_page).css('backgroundColor','#fff');
     $(add_more_page).css('position','relative');
-    $(add_more_page).css('paddingRight','0px');
+
     $(add_more_page).css('height','300px');
     var add_more_close_element = document.createElement('a');
     $(add_more_close_element).addClass("close");
@@ -548,8 +612,13 @@ function edit_master_test_name()
           $(modal_testname_div_value).addClass('col-md-7 col-lg-7 col-sm-7')
           $(modal_testname_div_value).html(lab_test_name);
 
+          var remain_part=document.createElement('div');
+          $(remain_part).addClass('col-md-2 col-lg-2 col-sm-2')
+      
+
           $(modal_testname_div).append(modal_testname_div_left);
           $(modal_testname_div).append(modal_testname_div_value);
+          $(modal_testname_div).append(remain_part);
           $(add_btn_row).append(modal_testname_div);
     }
     else
@@ -667,7 +736,7 @@ function autocomplete_attachment(number)
            
                       if ( intCount == arrySplitRequest.length )
                      {                        
-                          arryResponse.push( response_data_list[i]); 
+                          arryResponse.push(response_data_list[i]); 
                      }
                };
             }    
@@ -1164,7 +1233,7 @@ function edit_mark_test_as()
     $(add_more_page).attr('id','modal');
     $(add_more_page).css('backgroundColor','#fff');
     $(add_more_page).css('position','relative');
-    $(add_more_page).css('paddingRight','0px');
+
     var add_more_close_element = document.createElement('a');
     $(add_more_close_element).addClass("close");
     $(add_more_close_element).attr('href','#');
@@ -1222,7 +1291,6 @@ function edit_mark_test_as()
     $(single_button_row_middle).addClass('col-md-4 col-sm-4 col-lg-4');
     $(single_button_save_Mark_It_As_Either).on('click',function()
       {
-
             var csv_file_id=$(this).data('csv-file-id');
             var serial_num=$(this).data('serial-num');
             var mark_test_as=$(this).data('mark-test-as');
@@ -1720,6 +1788,126 @@ function update_row_after_status_edit(csv_file_id,test_name,mark_test_as,master_
         //$('table').append('tfoot tr:nth-child('+serial_num+')');
     } 
      //$('table tfoot').append('tr:nth-child('+serial_num+')');
+}
+
+function loading_image()
+{
+    
+    var error_page = document.createElement('div');
+    $(error_page).addClass("modal");
+    $(error_page).attr('id','loading_page');
+    //$(error_page).css('backgroundColor','#fff');
+    $(error_page).css('position','relative');
+    var load_msg = document.createElement('div');
+   
+    var load_img = document.createElement('img');
+    $(load_img).attr('id','loading_img');
+    $(load_img).attr('src','images/loading.gif');
+    $(load_img).css('marginLeft','256px');
+    $(error_page).append(load_img);
+    $(error_page).append(load_msg);
+    $(error_page).modal().open(); 
+
+}
+
+
+
+
+
+
+
+function for_table_mapping(csv_file_id)
+{
+
+
+  /*$.ajax({
+    url:host_api+"",
+    type:'',
+    dataType: 'json',
+    data:{csv_file_id:csv_file_id},
+    success:function(data)
+    {*/
+
+      var modal = document.createElement('div');     
+      $(modal).css("marginTop","100px");
+      $(modal).addClass("modal");
+      $(modal).attr('id','modal');
+      $(modal).css('backgroundColor','#fff');
+      $(modal).css('position','relative');
+
+      var add_more_close_element = document.createElement('a');
+      $(add_more_close_element).addClass("close");
+      $(add_more_close_element).attr('href','#');
+      $(add_more_close_element).html("&times;");
+      $(add_more_close_element).css('marginTop' ,'-19px');
+      $(add_more_close_element).css('fontSize','26px');
+      $(add_more_close_element).css('marginRight','7px');
+      $(add_more_close_element).attr('id','modal_close');
+      $(add_more_close_element).on('click',function ()
+      {
+        $("#modal").modal().close(); 
+      
+      });
+      var response_message= document.createElement('div');
+      $(response_message).css('textAlign','center');
+      $(response_message).css('marginBottom','16px');  
+      $(response_message).addClass('row');
+      
+      var response_message_col=document.createElement('div');
+      $(response_message_col).addClass('col-md-12 col-sm-12 col-lg-12');
+     
+      if(data)
+      {
+          $(response_message_col).html('Success');
+          $(response_message_col).css('fontWeight','bold');
+          $(response_message_col).css('fontSize','16px');
+          $(response_message_col).css('color','green');
+      }
+      else
+      {
+          $(response_message_col).html('Failed to Map');
+          $(response_message_col).css('fontWeight','bold');
+          $(response_message_col).css('fontSize','16px');
+          $(response_message_col).css('color','red');
+      }
+   
+      var add_btn_row = document.createElement('div');
+      $(add_btn_row).addClass('row');
+      $(add_btn_row).css('textAlign','center');
+    
+      var btn_row_left_col=document.createElement('div');
+      $(btn_row_left_col).addClass('col-md-8 col-sm-8 col-lg-8');
+      
+      var btn_row_right_col=document.createElement('div');
+      $(btn_row_right_col).addClass('col-md-2 col-sm-2 col-lg-2');
+     
+      var ok_button=document.createElement('button');
+      $(ok_button).addClass('btn btn-block btn-info active');
+      $(ok_button).html('Okay');
+
+      $(ok_button).click(function()
+      {
+         $('#modal').modal().close();
+         table_module();
+      });
+      
+      $(btn_row_right_col).append(ok_button);
+     
+      $(add_btn_row).append(btn_row_left_col);
+      $(add_btn_row).append(btn_row_right_col);
+
+      $(response_message).append(response_message_col);
+      
+      $(modal).append(add_more_close_element);
+      $(modal).append(response_message);
+      $(modal).append(add_btn_row);
+      $(modal).modal().open();
+      
+    /* }
+
+    });*/
+        
+    
 }
 
 $(document).ready(autocomplete_attachment_only_once(1));
