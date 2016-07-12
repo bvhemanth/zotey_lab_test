@@ -5,7 +5,7 @@ var tst=0;
 
 function table_module()
 {
-	 $.ajax({
+   $.ajax({
    url:host_api+"/m-api/admin/get_admin_lab_test_csv_data",
    type:'GET',
    dataType: 'json',
@@ -13,8 +13,8 @@ function table_module()
    success:function(data)
    {
       var container = document.getElementById('data');
-     	var row_top=document.createElement('div');
-     	$(row_top).addClass('row');
+      var row_top=document.createElement('div');
+      $(row_top).addClass('row');
 
       var tst_profile_loading = document.getElementById("tst_profile_loader");
       $(tst_profile_loading).css('display','none');
@@ -42,7 +42,7 @@ function table_module()
       $(table_body_head_row).css("background", "#41A7B3");
       $(table_body_head_row).css("textAlign", "center");
 
-  	  var table_head_test_id=document.createElement('th');
+      var table_head_test_id=document.createElement('th');
       $(table_head_test_id).html("Serial Number");
       $(table_head_test_id).css('border', '1px solid #ddd');
       $(table_head_test_id).css('padding','10px');
@@ -136,7 +136,7 @@ function table_module()
       var table_head_highlight=document.createElement('th');
       $(table_head_highlight).html("Highlight"); 
       $(table_head_highlight).css('border', '1px solid #ddd');
-      $(table_head_highlight).css('cursor','pointer');	
+      $(table_head_highlight).css('cursor','pointer');  
       $(table_head_highlight).css('color','white');
       $(table_head_highlight).css('padding','10px');
       $(table_head_highlight).addClass('font-size');
@@ -150,7 +150,7 @@ function table_module()
       $(table_head_highlight_msg).css('width','100px');
       $(table_head_highlight_msg).addClass('font-size');
 
-  	  var table_head_mark_test_as=document.createElement('th');
+      var table_head_mark_test_as=document.createElement('th');
       $(table_head_mark_test_as).html("Status"); 
       $(table_head_mark_test_as).css('border', '1px solid #ddd');
       $(table_head_mark_test_as).css('cursor','pointer');
@@ -219,115 +219,115 @@ function table_module()
       for(var i=0;i<data.csv_data.length;i++)
       {
 
-        	var table_row=document.createElement('tr');
-        	$(table_row).addClass('csv_details');
+          var table_row=document.createElement('tr');
+          $(table_row).addClass('csv_details');
           $(table_row).attr('id',data.csv_data[i].serial_num);
           $(table_row).attr('padding','5px');
-        	$(table_row).css('border', '1px solid #ddd');
+          $(table_row).css('border', '1px solid #ddd');
 
-        	var table_data_test_id=document.createElement('td');
-        	$(table_data_test_id).html(data.csv_data[i].serial_num);	
-        	$(table_data_test_id).css('font-size','13px');
+          var table_data_test_id=document.createElement('td');
+          $(table_data_test_id).html(data.csv_data[i].serial_num);  
+          $(table_data_test_id).css('font-size','13px');
           $(table_data_test_id).css('padding','10px');
-        	$(table_data_test_id).css('border', '1px solid #ddd');
-        	$(table_data_test_id).css('textAlign', 'center');
+          $(table_data_test_id).css('border', '1px solid #ddd');
+          $(table_data_test_id).css('textAlign', 'center');
 
-        	var table_data_test_name=document.createElement('td');
-        	$(table_data_test_name).html(data.csv_data[i].test_name);
-        	$(table_data_test_name).addClass("test_profile_name");
+          var table_data_test_name=document.createElement('td');
+          $(table_data_test_name).html(data.csv_data[i].test_name);
+          $(table_data_test_name).addClass("test_profile_name");
 
-        	$(table_data_test_name).css('font-size','13px');
-        	$(table_data_test_name).css('textAlign','left');
-        	$(table_data_test_name).css('border', '1px solid #ddd');
-        	$(table_data_test_name).css('padding-left','6px');
+          $(table_data_test_name).css('font-size','13px');
+          $(table_data_test_name).css('textAlign','left');
+          $(table_data_test_name).css('border', '1px solid #ddd');
+          $(table_data_test_name).css('padding-left','6px');
        
-        	var table_data_mrp=document.createElement('td');
-        	$(table_data_mrp).html(data.csv_data[i].mrp);	
-        	$(table_data_mrp).css('font-size','13px');
-        	$(table_data_mrp).css('textAlign','center');
-        	$(table_data_mrp).css('border', '1px solid #ddd');
+          var table_data_mrp=document.createElement('td');
+          $(table_data_mrp).html(data.csv_data[i].mrp); 
+          $(table_data_mrp).css('font-size','13px');
+          $(table_data_mrp).css('textAlign','center');
+          $(table_data_mrp).css('border', '1px solid #ddd');
          
-       	  var table_data_customer_discount=document.createElement('td');
-       	  $(table_data_customer_discount).html(data.csv_data[i].customer_discount);	
-        	$(table_data_customer_discount).css('font-size','13px');
-       	  $(table_data_customer_discount).css('textAlign','center');
-       	  $(table_data_customer_discount).css('border', '1px solid #ddd');
+          var table_data_customer_discount=document.createElement('td');
+          $(table_data_customer_discount).html(data.csv_data[i].customer_discount); 
+          $(table_data_customer_discount).css('font-size','13px');
+          $(table_data_customer_discount).css('textAlign','center');
+          $(table_data_customer_discount).css('border', '1px solid #ddd');
        
-       	  var table_data_total_discount=document.createElement('td');
-       	  $(table_data_total_discount).html(data.csv_data[i].total_discount);	
-        	$(table_data_total_discount).css('font-size','13px');
-        	$(table_data_total_discount).css('textAlign','center');
-        	$(table_data_total_discount).css('border', '1px solid #ddd');
+          var table_data_total_discount=document.createElement('td');
+          $(table_data_total_discount).html(data.csv_data[i].total_discount); 
+          $(table_data_total_discount).css('font-size','13px');
+          $(table_data_total_discount).css('textAlign','center');
+          $(table_data_total_discount).css('border', '1px solid #ddd');
         
-       	  var table_data_final_price=document.createElement('td');
-       	  $(table_data_final_price).html(data.csv_data[i].final_price);	
-        	$(table_data_final_price).css('font-size','13px');
-        	$(table_data_final_price).css('textAlign','center');
-        	$(table_data_final_price).css('border', '1px solid #ddd');
+          var table_data_final_price=document.createElement('td');
+          $(table_data_final_price).html(data.csv_data[i].final_price); 
+          $(table_data_final_price).css('font-size','13px');
+          $(table_data_final_price).css('textAlign','center');
+          $(table_data_final_price).css('border', '1px solid #ddd');
         
-        	var table_data_sellable_individually=document.createElement('td');
-        	$(table_data_sellable_individually).html(data.csv_data[i].sellable_individually);	
-        	$(table_data_sellable_individually).css('font-size','13px');
-        	$(table_data_sellable_individually).css('textAlign','center');
-        	$(table_data_sellable_individually).css('border', '1px solid #ddd');
+          var table_data_sellable_individually=document.createElement('td');
+          $(table_data_sellable_individually).html(data.csv_data[i].sellable_individually); 
+          $(table_data_sellable_individually).css('font-size','13px');
+          $(table_data_sellable_individually).css('textAlign','center');
+          $(table_data_sellable_individually).css('border', '1px solid #ddd');
 
-        	var table_data_parameters_count=document.createElement('td');
-        	$(table_data_parameters_count).html(data.csv_data[i].parameters_count);	
-        	$(table_data_parameters_count).css('font-size','13px');
-        	$(table_data_parameters_count).css('textAlign','center');
-        	$(table_data_parameters_count).css('border', '1px solid #ddd');
+          var table_data_parameters_count=document.createElement('td');
+          $(table_data_parameters_count).html(data.csv_data[i].parameters_count); 
+          $(table_data_parameters_count).css('font-size','13px');
+          $(table_data_parameters_count).css('textAlign','center');
+          $(table_data_parameters_count).css('border', '1px solid #ddd');
 
-        	var table_data_final_price_type=document.createElement('td');
-        	$(table_data_final_price_type).html(data.csv_data[i].final_price_type);	
-        	$(table_data_final_price_type).css('font-size','13px');
-        	$(table_data_final_price_type).css('textAlign','center');
-        	$(table_data_final_price_type).css('border', '1px solid #ddd');
+          var table_data_final_price_type=document.createElement('td');
+          $(table_data_final_price_type).html(data.csv_data[i].final_price_type); 
+          $(table_data_final_price_type).css('font-size','13px');
+          $(table_data_final_price_type).css('textAlign','center');
+          $(table_data_final_price_type).css('border', '1px solid #ddd');
 
-     	  	var table_data_department_name=document.createElement('td');
-        	$(table_data_department_name).html(data.csv_data[i].department_name);	
-        	$(table_data_department_name).css('font-size','13px');
-        	$(table_data_department_name).css('textAlign','center');
-        	$(table_data_department_name).css('border', '1px solid #ddd');
+          var table_data_department_name=document.createElement('td');
+          $(table_data_department_name).html(data.csv_data[i].department_name); 
+          $(table_data_department_name).css('font-size','13px');
+          $(table_data_department_name).css('textAlign','center');
+          $(table_data_department_name).css('border', '1px solid #ddd');
              
-        	var table_data_zotey_commission=document.createElement('td');
-        	$(table_data_zotey_commission).html(data.csv_data[i].zotey_commission);	
-        	$(table_data_zotey_commission).css('font-size','13px');
-        	$(table_data_zotey_commission).css('textAlign','center');
-        	$(table_data_zotey_commission).css('border', '1px solid #ddd');
+          var table_data_zotey_commission=document.createElement('td');
+          $(table_data_zotey_commission).html(data.csv_data[i].zotey_commission); 
+          $(table_data_zotey_commission).css('font-size','13px');
+          $(table_data_zotey_commission).css('textAlign','center');
+          $(table_data_zotey_commission).css('border', '1px solid #ddd');
 
-        	var table_data_highlight=document.createElement('td');
-        	$(table_data_highlight).html(data.csv_data[i].highlight);	
-        	$(table_data_highlight).css('font-size','13px');
-        	$(table_data_highlight).css('textAlign','center');
-        	$(table_data_highlight).css('border', '1px solid #ddd');
+          var table_data_highlight=document.createElement('td');
+          $(table_data_highlight).html(data.csv_data[i].highlight); 
+          $(table_data_highlight).css('font-size','13px');
+          $(table_data_highlight).css('textAlign','center');
+          $(table_data_highlight).css('border', '1px solid #ddd');
 
-        	var table_data_highlight_msg=document.createElement('td');  	
-        	if(data.csv_data[i].highlight_msg !='')
+          var table_data_highlight_msg=document.createElement('td');    
+          if(data.csv_data[i].highlight_msg !='')
           {
-        		
-              	var table_data_highlight_msg_a = document.createElement('a');
-              	$(table_data_highlight_msg_a).html('View Message');
-        		    $(table_data_highlight_msg_a).attr('data-highlight-message',data.csv_data[i].highlight_msg);
-              	$(table_data_highlight_msg).append(table_data_highlight_msg_a);
-              	$(table_data_highlight_msg_a).css('cursor','pointer');
-              	$(table_data_highlight_msg_a).attr('id','view_message_id');
+            
+                var table_data_highlight_msg_a = document.createElement('a');
+                $(table_data_highlight_msg_a).html('View Message');
+                $(table_data_highlight_msg_a).attr('data-highlight-message',data.csv_data[i].highlight_msg);
+                $(table_data_highlight_msg).append(table_data_highlight_msg_a);
+                $(table_data_highlight_msg_a).css('cursor','pointer');
+                $(table_data_highlight_msg_a).attr('id','view_message_id');
 
-              	$(table_data_highlight_msg_a).on('click',view_message);
+                $(table_data_highlight_msg_a).on('click',view_message);
           }
          else
           {
-        		    $(table_data_highlight_msg_a).html('');
+                $(table_data_highlight_msg_a).html('');
           }
 
-       	 	$(table_data_highlight_msg).attr('highlight-messsage',data.csv_data[i].highlight_msg);		
-        	$(table_data_highlight_msg).css('font-size','13px');
-        	$(table_data_highlight_msg).css('textAlign','center');
-        	$(table_data_highlight_msg).css('border', '1px solid #ddd');  	
+          $(table_data_highlight_msg).attr('highlight-messsage',data.csv_data[i].highlight_msg);    
+          $(table_data_highlight_msg).css('font-size','13px');
+          $(table_data_highlight_msg).css('textAlign','center');
+          $(table_data_highlight_msg).css('border', '1px solid #ddd');    
 
-        	var table_data_mark_test_as=document.createElement('td');
+          var table_data_mark_test_as=document.createElement('td');
 
           var table_data_mark_as_edit_a=document.createElement('a');
-        	$(table_data_mark_as_edit_a).html(data.csv_data[i].mark_test_as);	
+          $(table_data_mark_as_edit_a).html(data.csv_data[i].mark_test_as); 
 
           $(table_data_mark_as_edit_a).attr('data-lab-file-id',data.csv_file_id);
           $(table_data_mark_as_edit_a).attr('data-lab-test-serial-number',data.csv_data[i].serial_num); 
@@ -368,17 +368,17 @@ function table_module()
              $(table_data_mark_as_edit_a).css('color','black'); 
           }
 
-        	$(table_data_mark_test_as).css('font-size','13px');
-        	$(table_data_mark_test_as).css('textAlign','center');
-        	$(table_data_mark_test_as).css('border', '1px solid #ddd');
+          $(table_data_mark_test_as).css('font-size','13px');
+          $(table_data_mark_test_as).css('textAlign','center');
+          $(table_data_mark_test_as).css('border', '1px solid #ddd');
 
-        	var table_data_suggest_master_list=document.createElement('td');
-        	$(table_data_suggest_master_list).html(data.csv_data[i].suggest_master_list);	
-        	$(table_data_suggest_master_list).css('font-size','13px');
-        	$(table_data_suggest_master_list).css('textAlign','center');
-        	$(table_data_suggest_master_list).css('border', '1px solid #ddd');
+          var table_data_suggest_master_list=document.createElement('td');
+          $(table_data_suggest_master_list).html(data.csv_data[i].suggest_master_list); 
+          $(table_data_suggest_master_list).css('font-size','13px');
+          $(table_data_suggest_master_list).css('textAlign','center');
+          $(table_data_suggest_master_list).css('border', '1px solid #ddd');
       
-        	var table_data_master_test_name=document.createElement('td');
+          var table_data_master_test_name=document.createElement('td');
           $(table_data_master_test_name).html(data.csv_data[i].master_test_name); 
           $(table_data_master_test_name).css('font-size','13px');
           $(table_data_master_test_name).css('textAlign','center');
@@ -413,44 +413,44 @@ function table_module()
                 $(table_data_master_test_name_edit_a).on('click',edit_master_test_name);
                 $(table_data_master_test_name_for_edit).append(table_data_master_test_name_edit_a);
           }
-        	
+          
           $(table_data_master_test_name_edit_a).click(function()
           {
                 $('table tfoot tr').removeClass('mouseclick');
                 $('tfoot tr').addClass('csv_details');
           });
-        	var table_data_master_test_slug=document.createElement('td');
-        	$(table_data_master_test_slug).html(data.csv_data[i].master_test_slug);	
-        	$(table_data_master_test_slug).css('font-size','13px');
-        	$(table_data_master_test_slug).css('textAlign','center');
-        	$(table_data_master_test_slug).css('border', '1px solid #ddd');
+          var table_data_master_test_slug=document.createElement('td');
+          $(table_data_master_test_slug).html(data.csv_data[i].master_test_slug); 
+          $(table_data_master_test_slug).css('font-size','13px');
+          $(table_data_master_test_slug).css('textAlign','center');
+          $(table_data_master_test_slug).css('border', '1px solid #ddd');
 
-        	$(table_row).append(table_data_test_id);
-        	$(table_row).append(table_data_test_name);
+          $(table_row).append(table_data_test_id);
+          $(table_row).append(table_data_test_name);
           $(table_row).append(table_data_master_test_name);
           $(table_row).append(table_data_mark_test_as);
           $(table_row).append(table_data_master_test_name_for_edit);
-        	$(table_row).append(table_data_mrp);
-        	$(table_row).append(table_data_customer_discount);
+          $(table_row).append(table_data_mrp);
+          $(table_row).append(table_data_customer_discount);
           $(table_row).append(table_data_zotey_commission);
-        	$(table_row).append(table_data_total_discount);      
-        	$(table_row).append(table_data_final_price);
-        	$(table_row).append(table_data_sellable_individually);
-        	$(table_row).append(table_data_parameters_count);
-        	$(table_row).append(table_data_final_price_type);
-        	$(table_row).append(table_data_department_name);
-        	$(table_row).append(table_data_highlight);
-        	$(table_row).append(table_data_highlight_msg);
-        	//$(table_row).append(table_data_suggest_master_list);
-        	//$(table_row).append(table_data_master_test_slug);
+          $(table_row).append(table_data_total_discount);      
+          $(table_row).append(table_data_final_price);
+          $(table_row).append(table_data_sellable_individually);
+          $(table_row).append(table_data_parameters_count);
+          $(table_row).append(table_data_final_price_type);
+          $(table_row).append(table_data_department_name);
+          $(table_row).append(table_data_highlight);
+          $(table_row).append(table_data_highlight_msg);
+          //$(table_row).append(table_data_suggest_master_list);
+          //$(table_row).append(table_data_master_test_slug);
 
-        	$(table_body).append(table_row);
-        	$(table).append(table_body);
+          $(table_body).append(table_row);
+          $(table).append(table_body);
       } 
-  	  $(csv_values).append(table);
-  	  $(total_records_div).append(csv_values);
-  	  $(row_top).append(total_records_div);
-  	  $(container).append(row_top);   
+      $(csv_values).append(table);
+      $(total_records_div).append(csv_values);
+      $(row_top).append(total_records_div);
+      $(container).append(row_top);   
     }
 });
 
@@ -466,18 +466,18 @@ function view_message()
     $(add_more_page).css('position','relative');
     $(add_more_page).css('paddingRight','0px');
     var add_more_close_element = document.createElement('a');
-   	$(add_more_close_element).addClass("close");
-   	$(add_more_close_element).attr('href','#');
-   	$(add_more_close_element).html("&times;");
-   	$(add_more_close_element).css('marginTop' ,'-19px');
-   	$(add_more_close_element).css('fontSize','26px');
-   	$(add_more_close_element).css('marginRight','7px');
-   	$(add_more_close_element).attr('id','modal_close');
-  	$(add_more_close_element).on('click',function ()
-  	{
-     	$("#modal").modal().close(); 
-   	
-   	});
+    $(add_more_close_element).addClass("close");
+    $(add_more_close_element).attr('href','#');
+    $(add_more_close_element).html("&times;");
+    $(add_more_close_element).css('marginTop' ,'-19px');
+    $(add_more_close_element).css('fontSize','26px');
+    $(add_more_close_element).css('marginRight','7px');
+    $(add_more_close_element).attr('id','modal_close');
+    $(add_more_close_element).on('click',function ()
+    {
+      $("#modal").modal().close(); 
+    
+    });
     var add_more_msg = document.createElement('div');
     $(add_more_msg).css('textAlign','center');
     $(add_more_msg).addClass('row');
