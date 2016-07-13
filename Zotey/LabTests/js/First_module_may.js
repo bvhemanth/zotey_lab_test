@@ -58,6 +58,7 @@ function table_module()
           
             $(button_for_mapping_table).addClass('btn btn-block btn-info active');
             $(button_for_mapping_table).html('Map It');
+            
             $(button_for_mapping_table).css('fontWeight','bold');
             $(button_for_mapping_table).attr('data-csv-file-id',data.csv_file_id);
             $(button_for_mapping_table).attr('data-keyboard','false');
@@ -67,20 +68,20 @@ function table_module()
             {
               var csv_file_id=$(this).data('csv-file-id'); 
               $('#myModal').show();
-            //$('#main_table tr td').attr('disabled','true');
-            //$( "#data > table:contains(tr)" ).attr( "disabled", "disabled")
-            $("#main_table").addClass("disabledbutton");
-            $('#myModal').css('background','#ffffff');
-            $('#myModal').css('height','200px');
-             $('#myModal').modal({
-             backdrop: 'false',
-               keyboard:'false'
-                 });
 
-              loading_image();  
+            //$('#data').addClass('disabledbutton');
+            //$("#main_table").addClass("disabledbutton");
+            
+            $('#myModal').css('background','#ffffff');
+            $(button_for_mapping_table).attr('disabled','true');
+            $('#myModal').css('max-height','40%');
+             //$('#myModal').modal({
+             //backdrop: 'false',
+              // keyboard:'false'
+               //  });
+
+             // loading_image();  
               for_table_mapping(csv_file_id);  
-      
- 
             });
 
            $(top_row_for_mapping_buttons_right_col).append(button_for_mapping_table);      
@@ -1831,7 +1832,6 @@ function loading_image()
     //$(loading_page).attr('data-backdrop','static');
      //$(loading_page).attr('show','true');
 
-
     var dialogue =document.createElement('div');
     $(dialogue).addClass('');
 
@@ -1840,8 +1840,7 @@ function loading_image()
 
     var body =document.createElement('div');
     $(body).addClass('modal-body');
-   
-   
+  
     //$('#loading_page').modal({backdrop: 'static', keyboard: false})  
     $(loading_page).css('backgroundColor','#ffffff');
     $(loading_page).css('position','relative');
@@ -1855,33 +1854,19 @@ function loading_image()
     $(load_msg_div).append(load_img);
     
     $(body).append(load_msg_div);
-
-    
-    
+  
     $(content).append(body);
     $(loading_page).append(content);
     $(loading_page).append(dialogue);
     
-     
-    $(loading_page).modal().open(); 
-      
-      
-
-     
-    /*var options = {
-    "backdrop" : "static"
-       }
-    $("#myModal").modal(options);*/
-
-
-
-
+    $(loading_page).modal().open(); */
 }
+
 //function for table mapping 
 function for_table_mapping(csv_file_id)
 {
  console.log(csv_file_id);
-    $.ajax({
+   $.ajax({
     url:host_api+"/m-api/admin/admin_map_lab_test_csv_data",
     type:'GET',
     dataType: 'json',
@@ -1889,8 +1874,63 @@ function for_table_mapping(csv_file_id)
     success:function(data)
     {
          console.log(data);
-          $('#myModal').hide();
-          $("#main_table").removeClass("disabledbutton"); 
+          
+          $('#myModal').show();
+          $('#tst_profile_loader').hide();
+
+
+
+            //$('#main_table tr td').attr('disabled','true');
+            //$( "#data > table:contains(tr)" ).attr( "disabled", "disabled")
+            //$("#main_table").addClass("disabledbutton");
+            $("#data").addClass("disabledbutton");
+            $('#myModal').css('background','#ffffff');
+            //$(',modal_body').html('dghdjg');
+            $('div>img').remove();
+            $('div>p').html(data.error);
+            $('div>p').css('margin-top','5%');
+            $('div>p').css('fontWeight','bold');
+            $('div>p').css('fontSize','16px');
+
+            $('#myModal').css('height','200px');
+             $('#myModal').modal({
+               backdrop: 'false',
+               keyboard:'false'
+            });
+
+          var add_btn_row = document.createElement('div');
+          $(add_btn_row).addClass('row');
+          $(add_btn_row).css('textAlign','center');
+          $(add_btn_row).css('margin-top','5%');
+          var btn_row_left_col=document.createElement('div');
+          $(btn_row_left_col).addClass('col-md-8 col-sm-8 col-lg-8');
+          
+          var btn_row_right_col=document.createElement('div');
+          $(btn_row_right_col).addClass('col-md-2 col-sm-2 col-lg-2');
+         
+          var ok_button=document.createElement('button');
+          $(ok_button).addClass('btn btn-block btn-info active');
+          $(ok_button).html('Okay');
+
+          $(ok_button).click(function()
+          {
+                $('#modal').modal().close(); 
+                var container = document.getElementById('data');
+                $(container).removeClass('avoid-clicks');  
+                location.reload();
+                 
+          });
+          $(btn_row_right_col).append(ok_button);
+         
+          $(add_btn_row).append(btn_row_left_col);
+          $(add_btn_row).append(btn_row_right_col);
+
+
+             
+          $('#myModal').append(add_btn_row);            
+
+
+          /*$("#main_table").removeClass("disabledbutton"); 
           var modal = document.createElement('div');     
           $(modal).css("marginTop","");
           $(modal).addClass("modal");
@@ -1959,7 +1999,7 @@ function for_table_mapping(csv_file_id)
           $(modal).modal().open(); 
           $(window).click(function(){
             location.reload();
-          });
+          });*/
 
     }
 
