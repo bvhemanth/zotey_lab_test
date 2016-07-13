@@ -1,43 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="images/favicon.png" type="image/png" />
-<title>data</title>
-<link rel="stylesheet" href="css/csv_details.css"/>
-<link rel="stylesheet" href="commonfiles/the-modal.css"/>
-<link rel="stylesheet" href="commonfiles/demo-modals.css"/>
-<link rel="stylesheet" href="commonfiles/bootstrap.min.css">
-<link rel="stylesheet" href="commonfiles/jquery-ui.css"/>
-<link rel="shortcut icon" href="images/favicon.png" type="image/png" />
-<style>
-       .ui-autocomplete {
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
+        <title>data</title>
+        <link rel="stylesheet" href="css/csv_details.css"/>
+        <link rel="stylesheet" href="commonfiles/the-modal.css"/>
+        <link rel="stylesheet" href="commonfiles/demo-modals.css"/>
+        <link rel="stylesheet" href="commonfiles/bootstrap.min.css">
+        <link rel="stylesheet" href="commonfiles/jquery-ui.css"/>
+        <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
+
+        <style>
+        .ui-autocomplete 
+        {
             max-height: 150px;
-            max-width:323px;
+            max-width:310px;
             overflow-y: auto;
             /* prevent horizontal scrollbar */
             overflow-x: hidden;
             /* add padding to account for vertical scrollbar */
             padding-right: 0px;
         } 
-        .ui-autocomplete .ui-front .ui-menu .ui-widget .ui-widget-content
-        {
-        	
-        }
-</style>
-</head>
-<body>
+        a:hover{text-decoration: none;}
+        .hover { background-color:yellow; }
+        tr:nth-child(2n):hover{background-color:yellow;}
+        tr:hover{background-color:yellow;}
+        </style>
+    </head>
+    <body id="body">
+        <div id="data">
+        	<img id ="tst_profile_loader" src="images/default.gif">
+        </div>
+        
+                <div id="myModal" class="modal">
+                <div class="">
+                    <div class="">
+                        <div class="">
+                            
+                        </div>
+                        <div class="modal-body">
+                            <img id ="tst_profile_loader" src="images/default.gif">
+                             <p style='text-align:center;'>please wait while loding.......</p>
+                        </div>
+                        <div class="">
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div id="data">
-	<img id ="tst_profile_loader" src="images/default.gif">
-</div>
-<script src="commonfiles/jquery.min.js"></script>
-<script src="commonfiles/bootstrap.min.js"></script>
-<script src="commonfiles/jquery-ui.js"> </script>
-<script src="commonfiles/jquery.ui.autocomplete.html.js"></script>
-<script src="commonfiles/jquery.the-modal.js"></script>
-<!--<script src="http://sneha.zotey.net/desktop/Test_Profile/js/jquery.flexisel.js"></script>-------->
-<script src="js/First_module_may.js"></script>
-</body>
+        <script src="commonfiles/jquery.min.js"></script>
+        <script src="commonfiles/bootstrap.min.js"></script>
+        <script src="commonfiles/jquery-ui.js"> </script>
+        <script src="commonfiles/jquery.ui.autocomplete.html.js"></script>
+        <script src="commonfiles/jquery.the-modal.js"></script>
+        <script src="commonfiles/bootbox/bootbox.js"></script>
+
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
+        <script src="http://sneha.zotey.net/desktop/Test_Profile/js/jquery.flexisel.js"></script>-------->
+        <script src="js/First_module_may.js"></script>
+    </body>
 </html>
