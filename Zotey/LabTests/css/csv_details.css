@@ -22,5 +22,5 @@ a:hover{ background:rgb(234, 73, 79); color: white !important; text-decoration: 
 }
 .disabledbutton {
     pointer-events: none;
-    opacity: 0.4;
+    opacity:0.5;
 }
