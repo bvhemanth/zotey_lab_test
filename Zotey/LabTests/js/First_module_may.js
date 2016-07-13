@@ -12,11 +12,12 @@ function table_module()
    data:{csv_file_id:27},
    success:function(data)
    {
-     console.log(data);
+      console.log(data);
       var container = document.getElementById('data');
       var row_top=document.createElement('div');
       $(row_top).addClass('row');
-
+      
+      // $(container).removeClass('avoid-clicks');   
       var tst_profile_loading = document.getElementById("tst_profile_loader");
       $(tst_profile_loading).css('display','none');
 
@@ -39,15 +40,15 @@ function table_module()
       if(data.mapped_already=='yes')
       {
             var button_for_mapping_table=document.createElement('div');
-           // $(button_for_mapping_table).addClass('btn btn-block btn-default active');
-           // $(button_for_mapping_table).attr('disabled','true');
+            //$(button_for_mapping_table).addClass('btn btn-block btn-default active');
+            //$(button_for_mapping_table).attr('disabled','true');
             $(button_for_mapping_table).html('Already Mapped');
             $(button_for_mapping_table).css('fontWeight','bold');
             $(button_for_mapping_table).css('textAlign','center');
             $(button_for_mapping_table).css('border-radius','5px');
             $(button_for_mapping_table).css('padding','5px');
             $(button_for_mapping_table).css('border','2px solid #ddd');
-            $(button_for_mapping_table).attr('data-csv-file-id',data.csv_file_id);
+            //$(button_for_mapping_table).attr('data-csv-file-id',data.csv_file_id);
             
             $(top_row_for_mapping_buttons_right_col).append(button_for_mapping_table);
       }
@@ -59,22 +60,35 @@ function table_module()
             $(button_for_mapping_table).html('Map It');
             $(button_for_mapping_table).css('fontWeight','bold');
             $(button_for_mapping_table).attr('data-csv-file-id',data.csv_file_id);
+            $(button_for_mapping_table).attr('data-keyboard','false');
+            $(button_for_mapping_table).attr('data-backdrop','static');
           
             $(button_for_mapping_table).click(function()
             {
               var csv_file_id=$(this).data('csv-file-id'); 
+              $('#myModal').show();
+            //$('#main_table tr td').attr('disabled','true');
+            //$( "#data > table:contains(tr)" ).attr( "disabled", "disabled")
+            $("#main_table").addClass("disabledbutton");
+            $('#myModal').css('background','#ffffff');
+            $('#myModal').css('height','200px');
+             $('#myModal').modal({
+             backdrop: 'false',
+               keyboard:'false'
+                 });
+
               loading_image();  
               for_table_mapping(csv_file_id);  
+      
+ 
             });
 
            $(top_row_for_mapping_buttons_right_col).append(button_for_mapping_table);      
-
       }
       else
       {
 
       }
-      
       
       $(total_col_div).append(top_row_for_mapping_buttons_left_col);
       $(total_col_div).append(top_row_for_mapping_buttons_center_col);
@@ -518,7 +532,9 @@ function table_module()
     }
 });
 
-}
+} //end of table module function ...... 
+
+
 function view_message()
 {
     var highlight_message= $(this).data('highlight-message');
@@ -558,7 +574,9 @@ function view_message()
     $(add_more_page).append(add_btn_row);
     $(add_more_page).modal().open();
 
-} 
+}//view messaage modal present at last td
+
+
 function edit_master_test_name()
 {
     var serial_number=$(this).data('lab-test-serial-number');
@@ -691,7 +709,7 @@ function edit_master_test_name()
     $(add_more_page).append(single_button_row_save);
   
     $(add_more_page).modal().open();
-}
+}// edit test name() modal end
 
 function autocomplete_attachment_only_once(box_serial_number)
 {  
@@ -734,13 +752,13 @@ function autocomplete_attachment(number)
                           intCount = arrySplitRequest.length + 1;                        
                       }
            
-                      if ( intCount == arrySplitRequest.length )
+                      if( intCount == arrySplitRequest.length )
                      {                        
                           arryResponse.push(response_data_list[i]); 
                      }
                };
             }    
-                response(arryResponse);                      
+                  response(arryResponse);                      
             },minLength:2
                 
         }).data('ui-autocomplete')._renderItem = function( ul, item ) {
@@ -749,8 +767,8 @@ function autocomplete_attachment(number)
             var small=srchTerm.toLowerCase();
             var strNewLabel = item.label;
            
-                regexp = new RegExp ('(' + small + ')', "ig");
-                var strNewLabel = strNewLabel.replace(regexp,"<span style=''>$1</span>");   
+                regexp = new RegExp ("(" + small + ")", "ig");
+                var strNewLabel = strNewLabel.replace(regexp,"<span style='font-weight:;color:;'>$1</span>");   
                return $( "<li></li>" )
               .data( "item.autocomplete", item )
               .append( "<p>" + strNewLabel + "</p>" )
@@ -773,7 +791,6 @@ function to_change_the_data(id,serial_number,selected_data,master_test_slug)
     {
 
       var csv_file_id=data.csv_file_id;
-
       var test_name=data.current_record.test_name;
       var mark_test_as=data.current_record.mark_test_as;
       var master_test_name=data.current_record.master_test_name;
@@ -800,7 +817,7 @@ function to_change_the_data(id,serial_number,selected_data,master_test_slug)
    }); 
 }
 
-//function for 
+//function for updating row after editng master test name
 function update_row(csv_file_id,test_name,mark_test_as,master_test_name,mrp,
       customer_discount,total_discount,final_price,sellable_individually,parameters_count,
       final_price_type,department_name,zotey_commission,highlight,highlight_msg,suggest_master_list,master_test_slug,serial_num,selected_data)
@@ -1028,8 +1045,9 @@ function update_row(csv_file_id,test_name,mark_test_as,master_test_name,mrp,
         //$('table tr:nth-child('+serial_num+')').append(table_data_suggest_master_list);
         //$('table tr:nth-child('+serial_num+')').append(table_data_master_test_slug);
       
-           // $('table').append('table tbody tr:nth-child('+serial_num+')');
-        if(serial_num==1)
+        // $('table').append('table tbody tr:nth-child('+serial_num+')');
+        
+       if(serial_num==1)
        {
 
               var table_head = document.createElement('thead');    
@@ -1234,6 +1252,11 @@ function edit_mark_test_as()
     $(add_more_page).css('backgroundColor','#fff');
     $(add_more_page).css('position','relative');
 
+    $('#modal').modal({
+             backdrop: 'static',
+               keyboard:'false'
+                 });
+
     var add_more_close_element = document.createElement('a');
     $(add_more_close_element).addClass("close");
     $(add_more_close_element).attr('href','#');
@@ -1332,7 +1355,7 @@ function edit_mark_test_as()
     $(add_more_page).append(add_title_row);
     $(add_more_page).append(single_button_row_save);
     $(add_more_page).modal().open();
-}
+}//end of function edit_mark_test_as() modal 
 
 
 function status_update(csv_file_id,serial_num,mark_test_as)
@@ -1788,127 +1811,161 @@ function update_row_after_status_edit(csv_file_id,test_name,mark_test_as,master_
         //$('table').append('tfoot tr:nth-child('+serial_num+')');
     } 
      //$('table tfoot').append('tr:nth-child('+serial_num+')');
-}
+
+}//end of update_row_after_status_edit function
 
 function loading_image()
 {
+
+  /*
+    var loading_page = document.createElement('div');
+    $(loading_page).attr('id','myModal');
+    $(loading_page).addClass("modal");
+    $(loading_page).addClass("");
     
-    var error_page = document.createElement('div');
-    $(error_page).addClass("modal");
-    $(error_page).attr('id','loading_page');
-    //$(error_page).css('backgroundColor','#fff');
-    $(error_page).css('position','relative');
-    var load_msg = document.createElement('div');
+    $('#myModal').modal({
+                backdrop: 'static',
+                keyboard:'false' 
+                 });
+    //$(loading_page).attr('data-keyboard','false');
+    //$(loading_page).attr('data-backdrop','static');
+     //$(loading_page).attr('show','true');
+
+
+    var dialogue =document.createElement('div');
+    $(dialogue).addClass('');
+
+    var content =document.createElement('div');
+    $(content).addClass('');
+
+    var body =document.createElement('div');
+    $(body).addClass('modal-body');
+   
+   
+    //$('#loading_page').modal({backdrop: 'static', keyboard: false})  
+    $(loading_page).css('backgroundColor','#ffffff');
+    $(loading_page).css('position','relative');
+    var load_msg_div= document.createElement('div');
    
     var load_img = document.createElement('img');
     $(load_img).attr('id','loading_img');
     $(load_img).attr('src','images/loading.gif');
-    $(load_img).css('marginLeft','256px');
-    $(error_page).append(load_img);
-    $(error_page).append(load_msg);
-    $(error_page).modal().open(); 
+    $(load_img).css('marginLeft','50%');
+                   
+    $(load_msg_div).append(load_img);
+    
+    $(body).append(load_msg_div);
+
+    
+    
+    $(content).append(body);
+    $(loading_page).append(content);
+    $(loading_page).append(dialogue);
+    
+     
+    $(loading_page).modal().open(); 
+      
+      
+
+     
+    /*var options = {
+    "backdrop" : "static"
+       }
+    $("#myModal").modal(options);*/
+
+
+
 
 }
-
-
-
-
-
-
-
+//function for table mapping 
 function for_table_mapping(csv_file_id)
 {
-
-
-  /*$.ajax({
-    url:host_api+"",
-    type:'',
+ console.log(csv_file_id);
+    $.ajax({
+    url:host_api+"/m-api/admin/admin_map_lab_test_csv_data",
+    type:'GET',
     dataType: 'json',
     data:{csv_file_id:csv_file_id},
     success:function(data)
-    {*/
-
-      var modal = document.createElement('div');     
-      $(modal).css("marginTop","100px");
-      $(modal).addClass("modal");
-      $(modal).attr('id','modal');
-      $(modal).css('backgroundColor','#fff');
-      $(modal).css('position','relative');
-
-      var add_more_close_element = document.createElement('a');
-      $(add_more_close_element).addClass("close");
-      $(add_more_close_element).attr('href','#');
-      $(add_more_close_element).html("&times;");
-      $(add_more_close_element).css('marginTop' ,'-19px');
-      $(add_more_close_element).css('fontSize','26px');
-      $(add_more_close_element).css('marginRight','7px');
-      $(add_more_close_element).attr('id','modal_close');
-      $(add_more_close_element).on('click',function ()
-      {
-        $("#modal").modal().close(); 
-      
-      });
-      var response_message= document.createElement('div');
-      $(response_message).css('textAlign','center');
-      $(response_message).css('marginBottom','16px');  
-      $(response_message).addClass('row');
-      
-      var response_message_col=document.createElement('div');
-      $(response_message_col).addClass('col-md-12 col-sm-12 col-lg-12');
-     
-      if(data)
-      {
-          $(response_message_col).html('Success');
-          $(response_message_col).css('fontWeight','bold');
-          $(response_message_col).css('fontSize','16px');
-          $(response_message_col).css('color','green');
-      }
-      else
-      {
-          $(response_message_col).html('Failed to Map');
-          $(response_message_col).css('fontWeight','bold');
-          $(response_message_col).css('fontSize','16px');
-          $(response_message_col).css('color','red');
-      }
-   
-      var add_btn_row = document.createElement('div');
-      $(add_btn_row).addClass('row');
-      $(add_btn_row).css('textAlign','center');
-    
-      var btn_row_left_col=document.createElement('div');
-      $(btn_row_left_col).addClass('col-md-8 col-sm-8 col-lg-8');
-      
-      var btn_row_right_col=document.createElement('div');
-      $(btn_row_right_col).addClass('col-md-2 col-sm-2 col-lg-2');
-     
-      var ok_button=document.createElement('button');
-      $(ok_button).addClass('btn btn-block btn-info active');
-      $(ok_button).html('Okay');
-
-      $(ok_button).click(function()
-      {
-         $('#modal').modal().close();
-         table_module();
-      });
-      
-      $(btn_row_right_col).append(ok_button);
-     
-      $(add_btn_row).append(btn_row_left_col);
-      $(add_btn_row).append(btn_row_right_col);
-
-      $(response_message).append(response_message_col);
-      
-      $(modal).append(add_more_close_element);
-      $(modal).append(response_message);
-      $(modal).append(add_btn_row);
-      $(modal).modal().open();
-      
-    /* }
-
-    });*/
+    {
+         console.log(data);
+          $('#myModal').hide();
+          $("#main_table").removeClass("disabledbutton"); 
+          var modal = document.createElement('div');     
+          $(modal).css("marginTop","");
+          $(modal).addClass("modal");
+          $(modal).attr('id','modal');
+          $(modal).css('backgroundColor','#ffffff');
+          $(modal).css('position','relative');
+          $('#data').off('click');
+          var add_more_close_element = document.createElement('a');
+          $(add_more_close_element).addClass("close");
+          $(add_more_close_element).attr('href','#');
+          //$(add_more_close_element).html("&times;");
+          $(add_more_close_element).css('marginTop' ,'-16px');
+          $(add_more_close_element).css('fontSize','26px');
+          $(add_more_close_element).css('marginRight','7px');
+          $(add_more_close_element).attr('id','modal_close');
+          $(add_more_close_element).on('click',function ()
+          {
+            $("#modal").modal().close();  
+             
+          });
+          var response_message= document.createElement('div');
+          $(response_message).css('textAlign','center');
+          $(response_message).css('marginBottom','16px');  
+          $(response_message).addClass('row');
+          
+          var response_message_col=document.createElement('div');
+          $(response_message_col).addClass('col-md-12 col-sm-12 col-lg-12');
+         
         
+              $(response_message_col).html(data.error);
+              $(response_message_col).css('fontWeight','bold');
+              $(response_message_col).css('fontSize','16px');
+         
+          var add_btn_row = document.createElement('div');
+          $(add_btn_row).addClass('row');
+          $(add_btn_row).css('textAlign','center');
+        
+          var btn_row_left_col=document.createElement('div');
+          $(btn_row_left_col).addClass('col-md-8 col-sm-8 col-lg-8');
+          
+          var btn_row_right_col=document.createElement('div');
+          $(btn_row_right_col).addClass('col-md-2 col-sm-2 col-lg-2');
+         
+          var ok_button=document.createElement('button');
+          $(ok_button).addClass('btn btn-block btn-info active');
+          $(ok_button).html('Okay');
+
+          $(ok_button).click(function()
+          {
+                $('#modal').modal().close(); 
+                var container = document.getElementById('data');
+                $(container).removeClass('avoid-clicks');  
+                location.reload();
+                 
+          });
+          $(btn_row_right_col).append(ok_button);
+         
+          $(add_btn_row).append(btn_row_left_col);
+          $(add_btn_row).append(btn_row_right_col);
+
+          $(response_message).append(response_message_col);
+          
+          $(modal).append(add_more_close_element);
+          $(modal).append(response_message);
+          $(modal).append(add_btn_row);
+          $(modal).modal().open(); 
+          $(window).click(function(){
+            location.reload();
+          });
+
+    }
+
+    });  
     
-}
+}//end of table mapping function
 
 $(document).ready(autocomplete_attachment_only_once(1));
 window.onload =table_module();
